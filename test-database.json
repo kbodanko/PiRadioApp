@@ -1,1 +1,1 @@
-{"stations":[{"isPlaying":false,"name":"Test Radio One","title":"","uri":"http://testradio.one/stream"},{"isPlaying":true,"name":"Test Radio Two","title":"","uri":"http://testradio.two/player?mp3"},{"isPlaying":false,"name":"ll","title":"","uri":"http://testradio.one/stream"}]}
+{"stations":[{"isPlaying":false,"name":"Test Radio One","title":"","uri":"http://testradio.one/stream"},{"isPlaying":false,"name":"Test Radio Two","title":"","uri":"http://testradio.two/player?mp3"},{"isPlaying":false,"name":"ll","title":"","uri":"http://testradio.one/stream"}]}

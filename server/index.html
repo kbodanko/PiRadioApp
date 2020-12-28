@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+
+	<link rel="icon" type="image/ico" href="favicon.png">
+	<link rel="stylesheet" href="css1/server.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+	<link href="https://fonts.cdnfonts.com/css/3dumb" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+		<!-- <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Open+Sans:wght@700&display=swap" 
+	rel="stylesheet"> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/wired-elements/lib/wired-elements-iife.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+
+	<title>PiRadio</title>
+	
+</head>
+
+<body>
+	
+<div class="pi">
+		<div class="pi_header">
+			<div class="pi_header_logo">
+				<img src="radio/res/img/pi_logo1.svg" class="img_logo">
+				<div class="pi_header_logo_text">
+					<p class="para_logo">PiRadio</p>
+				</div>
+			</div>
+			<div class="pi_header_icons">
+			<img class="pi_header_icons_icon" src="radio/res/img/add.png" title="Add station">
+			<img class="pi_header_icons_icon" src="radio/res/img/view2.png" title="View source">
+			</div>
+		</div>
+
+		<div class="pi_wraper">
+		<div class="pi_stations">
+		<div class="pi_stations_filter">
+			<div class="pi_stations_filter_border">
+			<div class="pi_stations_filter_station">
+				<div class="pi_stations_filter_station_info">
+					<img class="img_active" src="radio/res/img/pi_logo.svg">
+				<p class="para_name_station">Station name</p>
+			</div>
+				<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
+			</div>
+			</div>
+			<div class="pi_stations_filter_border">
+				<div class="pi_stations_filter_station">
+					<div class="pi_stations_filter_station_info">
+						<img class="img_active" src="radio/res/img/pi_logo.svg">
+					<p class="para_name_station">Station name</p>
+				</div>
+					<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
+				</div>
+				</div>
+				<div class="pi_stations_filter_border">
+					<div class="pi_stations_filter_station">
+						<div class="pi_stations_filter_station_info">
+							<img class="img_active" src="radio/res/img/pi_logo.svg">
+						<p class="para_name_station">Station name</p>
+					</div>
+						<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
+					</div>
+					</div>
+				<div class="pi_stations_filter_border">
+						<div class="pi_stations_filter_station">
+							<div class="pi_stations_filter_station_info">
+								<img class="img_active" src="radio/res/img/pi_logo.svg">
+							<p class="para_name_station">Station name</p>
+						</div>
+							<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
+						</div>
+						</div>
+				<div class="pi_stations_filter_border">
+							<div class="pi_stations_filter_station">
+								<div class="pi_stations_filter_station_info">
+									<img class="img_active" src="radio/res/img/pi_logo.svg">
+								<p class="para_name_station">Station name</p>
+							</div>
+								<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
+							</div>
+							</div>
+				<div class="pi_stations_filter_border">
+								<div class="pi_stations_filter_station">
+									<div class="pi_stations_filter_station_info">
+										<img class="img_active" src="radio/res/img/pi_logo.svg">
+									<p class="para_name_station">Station name</p>
+								</div>
+									<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
+								</div>
+								</div>
+								<div class="pi_stations_filter_border">
+									<div class="pi_stations_filter_station">
+										<div class="pi_stations_filter_station_info">
+											<img class="img_active" src="radio/res/img/pi_logo.svg">
+										<p class="para_name_station">Station name</p>
+									</div>
+										<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
+									</div>
+									</div>
+		<!-- <div class="stations_station" v-for='(station, index) in stations' v-bind:key='station.id'
+                        v-bind:class="{'stations_station_clicked':clicked===station.id}" v-bind:stationId='station.id'
+						v-on:click="clicked=station.id, returnId"> -->
+	</div>
+	</div>
+	
+	<div class="pi_controls">
+		<div class="pi_controls_name"><p class="para_name">Name station</p></div>
+		<div class="pi_controls_button" v-on:click=playPauseChange>
+			<div class="pi_controls_button_play" ref='button'></div>
+		</div>
+	</div>
+</div>
+</div>
+<script>
+	let pi=new Vue({
+		el: '.pi',
+		methods: {
+			playPauseChange: function(){
+				this.$refs.button.classList.toggle('pi_controls_button_pause')
+				
+			}
+		}
+
+
+	})
+</script>
+
+

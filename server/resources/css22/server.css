@@ -1,0 +1,287 @@
+body{
+    /* background-image: url(Science-Background.jpg); */
+    background-size: cover;
+    margin: 0;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
+.pi{
+    background-color: rgba(0, 0, 0);
+    /* background-size: cover;
+    height: 120vh; */
+}
+/* .pi::after{
+    content: '';
+    display: block;
+    color: rgba(255, 255, 255, 0);
+    height: 5px;
+    background-color: rgba(255, 255, 255,.3);
+} */
+.pi_header{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+.pi_header_logo{
+    display: flex;
+}
+.pi_header_logo_icons{
+    display: flex;
+}
+.pi_header_icons_icon{
+    height: 27px;
+    padding-right: 5px;
+    opacity: .6;
+    filter: invert(100%);
+    /* border: 1px solid black; */
+}
+.pi_header_icons_icon:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+.pi_header_icons_icon:active{
+    transform: scale(.95);
+}
+.pi_header_logo_text{
+    display: flex;
+    align-items: flex-end;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-weight: 900;
+    font-size: 28px;
+    font-variant: small-caps;
+}
+.para_logo{
+    margin: 0 0 -17px 5px;
+}
+.pi_divider{
+    width: 80%;
+    margin: 1rem auto;
+    height: 1px;
+    background-color: white;
+}
+.pi_stations{
+    /* background-color: rgba(43, 42, 42); */
+    margin-top: 2vh;
+}
+.pi_stations_filter{
+    /* max-height: 50vh; */
+    padding: 5px;
+    /* overflow: scroll; */
+}
+.pi_stations_filter_station{
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255,.7);
+}
+.pi_stations_filter_station:hover{
+    color: white;
+}
+.pi_stations_filter_station:active{
+    /* background-color: rgb(0, 0, 0); */
+}
+.pi_stations_filter_station_info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 1vh;
+    padding: 1vh;
+}
+/* .pi_stations_filter_station:active .pi_stations_filter_station_info{
+    /* transform: scale(.97); */
+    /* background: -webkit-linear-gradient(left, rgb(62, 121, 230)9%, rgb(76, 247, 210));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /*to delete
+    background-size: 15%; 
+} */
+.pi_stations_filter_border{
+    padding: 1px;
+}
+.pi_stations_filter_border:hover{
+    /* background: linear-gradient(to right, rgb(92, 149, 255), rgb(76, 247, 210)); */
+    cursor: pointer;
+}
+.is_active{
+    height: 15px;
+    margin-right: 2vh;
+    /* display: none; */
+}
+.pi_stations_filter_station_info_not_active{
+    width: 0;
+    height: 0;
+    border-right: 0;
+    border-left: 1em solid rgba(255, 255, 255);
+    opacity: .8;
+    border-top: 0.5em solid transparent;
+    border-bottom: 0.5em solid transparent;
+}
+.pi_stations_filter_station_info_active{
+    width: 14px;
+    height: 14px;
+    display: none;
+}
+
+.para_name_station{
+    margin: 0;  
+}
+.img_bin{
+    height: 29px;
+    opacity: .7;
+    margin-right: 3vh;
+}
+.img_bin:hover{
+    opacity: 1;
+}
+.pi_controls{
+    display: flex;
+    justify-content: center;
+    padding: 1.5vh 5vh;
+    font-family: 'Open Sans', sans-serif;
+}
+.pi_controls_name{
+    display: flex;
+    align-items: center;
+}
+.para_name{
+    font-size: .8rem;
+    margin: 0;
+}
+.pi_controls_panel_button{
+    /* box-shadow: 0 5px 10px 0 rgb(24, 24, 24), inset 0 2px 3px rgba(133, 133, 133, 0.7); */
+    /* background-color: rgba(39, 39, 39, 0.7); */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60px;
+    height: 40px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+/* .pi_controls_button:hover{
+    box-shadow: 0 5px 10px 0 rgb(0, 0, 0), inset 0 2px 3px rgba(255, 255, 255, 0.7);
+    background-color: rgba(0, 0, 0, 0.5);
+} */
+.pi_controls_panel_button:active{
+    transform: scale(.95);
+}
+.pi_controls_panel_button_play{
+    margin-left: 4px;
+    width: 0;
+    height: 0;
+    border-right: 0;
+    border-left: 1em solid rgba(255, 255, 255);
+    opacity: .8;
+    border-top: 0.5em solid transparent;
+    border-bottom: 0.5em solid transparent;
+}
+.pi_controls_panel_button_pause{
+    margin-left: 0;
+    width: 4px;
+    height: 1em;
+    border-right: calc(0.5em - 2px) solid rgba(255, 255, 255);
+    border-left: calc(0.5em - 2px) solid rgba(255, 255, 255);
+    opacity: .8;
+    border-top: 0;
+    border-bottom: 0;
+    background-color: transparent;
+}
+.pi_controls_panel_button:hover> .pi_controls_button_play, .pi_controls_button_pause{
+    opacity: 1;
+}
+@keyframes pulse {
+    0%{
+        box-shadow: 0 0 2px 1px rgb(92, 149, 255);
+    }
+    25%{
+        box-shadow: 0 0 3px 2px rgb(76, 247, 247);
+    }
+    50%{
+        box-shadow: 0 0 4px 2px rgb(76, 247, 247);
+    }
+    75%{
+        box-shadow: 0 0 3px 2px rgb(76, 247, 247);
+        }
+    100%{
+        box-shadow: 0 0 2px 1px rgb(92, 149, 255);
+    }
+    }
+    /* 0%{
+        box-shadow: 0 0 2px 1px rgb(92, 149, 255);
+    }
+    20% {
+     box-shadow: 0 0 3px 2px rgb(92, 176, 255);
+   }
+   40% {
+         box-shadow: 0 0 4px 3px rgb(76, 247, 247);
+   }
+   60% {box-shadow: 0 0 5px 4px rgb(92, 231, 255);
+         
+   }
+   80%{
+    box-shadow: 0 0 4px 3px rgb(76, 199, 247);
+   }
+   100%{
+    box-shadow: 0 0 3px 2px rgb(57, 175, 253);
+   }
+   100%{
+    box-shadow: 0 0 2px 1px rgb(92, 149, 255);
+} */
+ /* } */
+ 
+@media(min-width:1100px){
+    .pi_controls{
+        align-items: center;
+    }
+    .pi_controls_panel{
+        margin: 4vh;
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+    .pi::after,
+    .pi_wraper{
+        width: 55%;
+        margin: auto;
+    }
+    .pi{
+        padding: 3vh 20%;
+    }
+    .pi_stations{
+        padding: 0 3vh;
+    }
+    /* .pi_wraper{
+        display: flex;
+    } */
+    .pi_stations_filter{
+        /* width: 70%; */
+    }
+    /* .pi_wraper .pi_divider{
+        display: none;
+    } */
+    /* .pi_wraper{
+        display: flex;
+    }
+    .pi_controls{
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 30%;
+    }
+    .pi_controls_name{
+        display: flex;
+        justify-content: center;
+    } */
+}
+
