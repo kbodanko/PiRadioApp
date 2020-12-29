@@ -1,94 +1,184 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
+    <meta charset="UTF-8">
 
-    <title>PiRadio</title>
-
-    <link rel="stylesheet" href="radio/res/css/index.css">
-    <link rel="stylesheet" href="radio/res/css/header.css">
-    <link rel="stylesheet" href="radio/res/css/footer.css">
-    <link rel="stylesheet" href="radio/res/css/buttons.css">
-    <link rel="stylesheet" href="radio/res/css/new.css">
-    <link rel="stylesheet" href="radio/res/css/stations.css">
-    <link rel="stylesheet" href="radio/res/css/volume.css">
-
-    <script type="text/javascript" src="radio/res/js/index.js"></script>
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-
-	<link rel="icon" type="image/ico" href="radio/res/favicon.png">
-
+	<link rel="icon" type="image/ico" href="favicon.png">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="stylesheet" href="radio/res/css/server1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+	<link href="https://fonts.cdnfonts.com/css/3dumb" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/wired-elements/lib/wired-elements-iife.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
 
+	<title>PiRadio</title>
+	
 </head>
+
 <body>
-<div id="Application">
-    <div id="Header">
-        <div id="HeaderContainer">
-            <div id="HeaderTitle">
-                <p id="HeaderTitleNameText">PiRadio</p>
-                <p id="HeaderTitleVersionText">chess v1.0</p>
-            </div>
-            <div id="HeaderButtons">
-                <img class="btnSmall" id="HeaderView" onclick="onClickView()" src="radio/res/img/preview.png"/>
-                <img class="btnSmall" id="HeaderDelete" onclick="onClickDeletePage()" src="radio/res/img/delete.png"/>
-                <img class="btnSmall" id="HeaderNew" onclick="onClickNew()" src="radio/res/img/new_page.png"/>
-            </div>
-        </div>
-    </div>
+	
+<div class="pi">
+		<div class="pi_header">
+			<div class="pi_header_logo">
+				<div class="pi_header_logo_text">
+					<p class="para_logo">Pi<span class="para_orange">R</span>adio</p>
+				</div>
+			</div>
+			<div class="pi_header_icons">
+				<img class="pi_header-icon_menu" src="radio/res/img/menu.png">
+				</div>
+		</div>
+		<div class="pi_divider"></div>
+		<div ref='stationName' class="pi_station_name"><p class="para_name">##clickedStationName## ##index##</p></div>
 
-    <div id="Content">
-        <div id="ContentContainer">
-            <div id="ContentStationsListContainer">
-                <ul id="ContentStationList">
-                </ul>
-            </div>
+		<div class="pi_header_logo_pic">
+			<div class="pic_elements logo_elements" id="pic1"></div>
+			<div class="pic_elements logo_elements" id="pic2"></div>
+			<div class="pic_elements logo_elements" id="pic3"></div>
+			<div class="pic_elements logo_elements" id="pic4"></div>
+			<div class="pic_elements logo_elements" id="pic5"></div>
+		</div>
+		<div class="pi_wraper">
+		<div class="pi_stations" v-for='(station, index) in stations' :key='station.name' :id='index' 
+		v-on:click=isClicked(index)>
+		<div class="pi_stations_filter" >
+			<div class="pi_stations_filter_border" >
+				<div :ref="'filterStation'+index" class="pi_stations_filter_station">
+					<div class="pi_stations_filter_station_info">
+					<p v-if='!preview' ref="nameUri" class="para_name_station">##station.name##</p>
+					<p v-if='preview' ref="nameUri" class="para_name_station">##station.uri##</p>
+			<img :ref="'station'+index" class="img_active" src="radio/res/img/new_play_outline.svg">
+				</div>
+	</div>
+	</div></div>
+		</div></div>
+	<div class="pi_divider"></div>
 
-            <div id="ContentNewStationContainer" style="display: none;">
-                <ul id="ContentNewStationList">
-                    <li id="ContentNewStationName">
-                        <img class="btnSmall" id="ContentNewStationRadioImg" src="radio/res/img/radio.png"/>
-                        <input class="contentNewStationInput" id="ContentNewStationNameInput" type="text" placeholder="Station name..."/>
-                    </li>
-                    <li id="ContentNewStationUri">
-                        <img class="btnSmall" id="ContentNewStationLinkImg" src="radio/res/img/link.png"/>
-                        <input class="contentNewStationInput" id="ContentNewStationUriInput" type="text" placeholder="Station uri..."/>
-                    </li>
-                    <li id="ContentNewStationButtons">
-                        <img class="btnMedium" id="ContentNewStationBtnADD" onclick="onClickNewAdd()" src="radio/res/img/new_add.png"/>
-                        <img class="btnMedium" id="ContentNewStationBtnCLEAR" onclick="onClickNewClear()" src="radio/res/img/new_clear.png"/>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="Footer">
-        <div id="FooterBorder"></div>
-        <div id="FooterContainer">
-            <div id="FooterStationDescriptions">
-                <p id="FooterStationNameText">Station Name</p>
-                <p id="FooterStationTitleText">Station Title</p>
-            </div>
-            <div id="FooterButtons">
-                <div id="FooterFavoriteContainer">
-                    <img class="btnXSmall" id="FooterFavorite" src="radio/res/img/favourite_full_love.png"/>
-                </div>
-                <div id="FooterPlayerContainer">
-                    <img class="btnMedium" id="FooterPrev" onclick="onClickPrev()" src="radio/res/img/prev.png"/>
-                    <img class="btnLarge" id="FooterState" src="radio/res/img/play.png"/>
-                    <img class="btnMedium" id="FooterNext" onclick="onClickNext()" src="radio/res/img/next.png"/>
-                </div>
-                <div id="FooterVolumeContainer">
-                    <img class="btnXSmall" id="FooterVolume" onclick="onClickVolume()" src="radio/res/img/volume_more.png"/>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="pi_controls">
+		<div class="pi_controls_panel">
+		<div class="pi_controls_panel_button">
+				
+			<img @click=playStation ref='play' class="img_play" src="radio/res/img/play_outline.svg">
+				<img @click=stopStation ref='pause' class="img_pause" src="radio/res/img/pause_outline.svg">
+			</div>
+		</div>
+	</div>
 </div>
-<input id="volumeControl" orient="vertical" type="range" min="0" max="100" step="1" oninput="onClickSetVolume(this.value)" onchange="onClickSetVolume(this.value)"></input>
-    
 
-</body>
-</html>
+<script>
+	let pi=new Vue({
+		el: '.pi',
+		delimiters: ["##","##"],
+		data: {
+			preview:false,
+			stations: [],
+			station: '',
+			clickedStation:'',
+			clickedStationName: '',
+			stationNumber: null,
+			index: null,
+			play: '',
+			pause: '',
+		},
+		created() {
+			this.getData("/radio/api/station/all");
+
+		},
+		methods: {
+			ifStatePlay: function(){
+				fetch("/radio/api/audio/state").then(resp=>{return resp}).then(resp=>resp.json())
+			},
+			isClicked: function(index){
+				let indexStation='station'+index;
+				let filterStation='filterStation'+index;
+				let filterStationClicked='filterStationClicked'+index;
+				this.stationNumber=index;
+				this.clickedStation=this.stations[index];
+				this.clickedStationName=this.stations[index].name;
+				let isSameStation= this.clickedStationName===this.stations[index].name;
+				if(isSameStation){
+					console.log(this.$refs['station'+index][0].src, this.$refs['station'+index][0].src==='http://localhost:8080/radio/res/img/new_play_outline.svg')
+					if(this.$refs['station'+index][0].src==='http://localhost:8080/radio/res/img/new_play_outline.svg'){
+					this.setStation(this.clickedStationName);
+					}else{this.stopStation();					
+					}
+				}else{
+					this.setStation(this.clickedStationName);			
+					}
+					console.log(this.$refs['station'+index][0].src,this.clickedStationName);
+				for(let it=0;it<this.stations.length;it++){
+					if(it!=index){
+					this.$refs['filterStation'+it][0].setAttribute('class','pi_stations_filter_station');
+					this.$refs['station'+it][0].src='radio/res/img/new_play_outline.svg';
+				}else{						
+					if(this.$refs['station'+it][0].src==='http://localhost:8080/radio/res/img/new_play_outline.svg'){
+						this.stopStation();
+					}else{
+						this.setStation(this.clickedStationName);
+					}
+					this.$refs['filterStation'+it][0].setAttribute('class','pi_stations_filter_station_clicked');
+				}			
+			}
+			},
+			getData: function(url){
+				fetch(url).then(resp=>{return resp}).then(resp=>{return resp.text()}).
+				then(resp=>{return JSON.parse(resp)}).then(
+					resp=>{this.stations = resp.value; 
+					return this.stations});
+			},
+			playStation: function(){
+				this.$refs['station'+this.stationNumber][0].setAttribute('src', 'http://localhost:8080/radio/res/img/new_pause_outline.svg');
+				this.$refs.play.style.display='none'
+				this.$refs.pause.style.display='block';
+				return this.testGet("/radio/api/audio/play").then((res)=>{
+					return res;
+				})},
+			stopStation: function(){
+				this.$refs['station'+this.stationNumber][0].src="radio/res/img/new_play_outline.svg";
+				console.log(this.$refs['station'+this.stationNumber][0].src, 'src', this.stationNumber);
+				this.$refs.pause.style.display='none';
+				this.$refs.play.style.display='block'
+				return this.testGet("/radio/api/audio/stop").then((res)=>{
+					return res;
+				})
+			},
+			setStation: function(name) {
+    			let station = new Station(name, null);
+    			let replySet = this.testPost("radio/api/audio/set",JSON.stringify({"name": station.name})).then(resp=>{this.playStation();});
+    			let status = new Status(
+        		replySet["code"],
+        		replySet["message"]);
+				return status;
+			},
+			testPost: function (url, body){
+				return fetch(url, {
+  				method: "POST",
+  				body: body}
+				).then(resp=>{return resp});
+			},
+			testGet: function (url){
+				return fetch(url).then(resp=>{return resp}).then(resp=>{return resp.text()}).
+				then(resp=>{return JSON.parse(resp)}).then(resp=>{return resp});					
+				}
+
+	}});
+
+	class Status {
+    constructor(code, message) {
+        this.code = code;
+        this.message = message;
+    }}
+class Station {
+    constructor(name, uri) {
+        this.name = name;
+        this.uri = uri;
+        
+    }}
+</script>
+
+
