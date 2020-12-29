@@ -1,4 +1,4 @@
-piR_december20.png  PiRadio
+(piR_december20.png)  PiRadio
 [![Build Status](https://travis-ci.com/PiRadioApp/PiRadioApp.svg?branch=master)](https://travis-ci.com/PiRadioApp/PiRadioApp)
 ## Description
 ```
