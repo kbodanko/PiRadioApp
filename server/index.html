@@ -1,134 +1,378 @@
-<!DOCTYPE html>
-<html>
-<head>
-	
+body{
+    margin: 0;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+}
+.pi{
+    position: relative;
+}
+.pi_blur{
+    transition: .8s;
+    background-image: url(19384504.jpg);
+}
+.pi_blur_background{
+    background-color: rgba(41, 0, 54, 0.86);
+}
+.pi_header_menu{
+    cursor: pointer;
+}
+.pi_header_logo{
+    display: flex;
+}
+.pi_header_logo_pic{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 5vh 0;
+}
+.pic_elements{
+    background-color: white;
+    margin-right: .3rem;
+    width: 1.4rem;
+}
+#pic1{
+    height: 5.2rem;
+}
+#pic2{
+    height: 3.8rem;
+}
+#pic3{
+    height: 4.6rem;
+}
+#pic4{
+    height: 2.7rem;
+    background-color: rgb(255, 167, 0);
+}
+#pic5{
+    height: 4.2rem;
+}
+.pi_header_logo_icons{
+    display: flex;
+}
+.img_settings{
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    right: 0;
+    height: 16px;
+    filter: invert(100%);
+    transition: .5s;
+    padding: .7rem;
+    cursor: pointer;
+}
+.img_menu{
+    filter: invert(100%);
+    height: 35px;
+    cursor: pointer;
+}
+.pi_header_menu_icons{
+    z-index: 2;
+    position: fixed;
+    right: 0;
+    top: 0;
+    padding: 1.5rem 0 0 .5rem;
+    width: 30px;
+    height: 12px;
+}
+#icon1{
+    transition: .3s;
+}
+#icon2{
+    transition: .6s;
+}
+#icon3{
+    transition: .9s;    
+}
+.pi_header_menu_icons_icon{
+    transform: translateX(70px);
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 .5rem 1rem 2rem;
+    cursor: pointer;
+}
+.pi_header_menu_icons_icon:hover{
+    transform: scale(.8);
+    cursor: pointer;
+}
+.pi_header_menu_icons_icon:active{
+    transform: scale(.8);
+    cursor: pointer;
+}
+.pi_header_menu_icons_icon_border{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3.6rem;
+    width: 3.6rem;
+    border-radius: 1.8rem;
+    box-sizing: border-box;
+}
+.img_icons{
+    filter: invert(100%);
+    height: 20px;
+    cursor: pointer;
+}
+.icon_background{
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: 2px solid orange;
+}
+.icon_background_orange{
+    background-color: rgb(255, 167, 0);
+}
+.pi_header_icons_icon{
+    height: 27px;
+    padding-right: 5px;
+    opacity: .6;
+    filter: invert(100%);
+}
+.pi_header_icons_icon:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+.pi_header_icons_icon:active{
+    transform: scale(.95);
+}
+#pi_addition{
+    background-color: rgb(100, 100, 100);
+    z-index: 1;
+    position: fixed;
+    top: 8%;
+    right: 10%;
+    transition: .7s;
+    transform: translate(80rem);
+    width: 80%;
+    height: 80vh;
+    font-size: 1rem;
+}
+#pi_close{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+#pi_close_x {
+    position: absolute;
+    right: .3rem;
+    top: .3rem;
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+    cursor: pointer;
+    padding-left: 1px;
+    color: white;
+  }
+#pi_close_x:hover {
+    opacity: 1;
+}
+#pi_close_x:before, #pi_close_x:after {
+    position: absolute;
+    right: .6rem;
+    content: ' ';
+    height: 16px;
+    width: 2px;
+    background-color: white;
+}
+#pi_close_x:before {
+    transform: rotate(45deg);
+}
+#pi_close_x:after {
+    transform: rotate(-45deg);
+}
+#pi_addition{
+    transform: translate(80rem);
+}
+.pi_addition_inputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.pi_addition_inputs_input{
+    font-size: 1rem;
+    background-color: rgba(28, 28, 28, 0);
+    color: rgb(212, 212, 212);
+    width: 80%;
+    margin: 1rem auto;
+    border: none;
+    border-bottom: 1px solid rgb(212, 212, 212);
+}
+/* .pi_addition_inputs_input::placeholder{
+    color: transparent;
+    border: none;
+} */
+.pi_addition_inputs_input:focus{
+    outline: none;
+}
+#pi_additions_buttons{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+#submit_button{
+    cursor: pointer;
+}
+.pi_header_logo_text{
+    display: flex;
+    align-items: flex-end;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-weight: 900;
+    font-size: 28px;
+    font-variant: small-caps;
+}
+.para_orange{
+    color: rgb(255, 167, 0);
+}
+.para_logo{
+    margin: 0 0 -17px 20px;
+}
+.pi_divider{
+    width: 80%;
+    margin: 1rem auto;
+    height: 1px;
+    background-color: white;
+}
+.pi_station_name{
+    display: flex;
+    justify-content: center;
+    margin: 2.3rem 0;
+}
+.pi_wraper{
+    max-height: 27vh;
+    overflow: scroll;
+    scrollbar-width: none;
+}
+::-webkit-scrollbar {
+    width: 10px;
+  }
+::-webkit-scrollbar-track {
+    background: #272727;
+  }
+.pi_stations_filter{
+    padding: 5px 1.5rem;
+}
+.pi_stations_filter_station{
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color:rgb(255, 255, 255, 0);
+    color: rgb(255, 255, 255);
+    border: 0;
+}
+.pi_stations_filter_station_clicked{
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color:rgb(255, 255, 255, .1);
+    width: 100%;
+    opacity: 1;
+    border-radius: 3px;
+}
+.pi_stations_filter_station_info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    padding: .3rem 1.2rem;
+}
+.pi_stations_filter_station_info:hover{
+    scale: 1.02;
+    opacity: 1;
+}
+.pi_stations_filter_border{
+    border-radius: 20%;
+}
+.pi_stations_filter_border:hover{
+    cursor: pointer;
+}
+.pi_stations_filter_station_info_active{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+} 
+.para_name_station{
+    width: 90%;
+    height: 1.5rem;
+    overflow: hidden;
+    margin: 0;  
+    line-height: 1.5rem;
+}
+.pi_controls{
+    display: flex;
+    justify-content: center;
+    padding: 1.5vh 5vh;
+    font-family: 'Open Sans', sans-serif;
+}
+.pi_controls_name{
+    display: flex;
+    align-items: center;
+}
+.para_name{
+    font-size: 4.5vh;
+    margin: 0;
+}
+.pi_controls_panel_button{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60px;
+    height: 40px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+.img_previous_next{
+    height: 30px;
+}
+.img_previous_next:active, .img_play:active, .img_pause:active{
+    transform: scale(.95);
+}
+.img_play{
+    margin: 0px 2.7rem 0px 3.3rem;
+}
+.img_pause{
+    display: none;
+    margin: 0 3rem;
+}
+.img_play, .img_pause{
+    height: 40px;
+}
+.img_active{
+    height: 15px;
+}
+.img_active_invert{
+    height: 20px;
+    filter: invert(100%);
+}
 
-	<link rel="icon" type="image/ico" href="favicon.png">
-	<link rel="stylesheet" href="css1/server.css">
-    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
-	<link href="https://fonts.cdnfonts.com/css/3dumb" rel="stylesheet">
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
-		<!-- <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&family=Open+Sans:wght@700&display=swap" 
-	rel="stylesheet"> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/wired-elements/lib/wired-elements-iife.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	
-
-	<title>PiRadio</title>
-	
-</head>
-
-<body>
-	
-<div class="pi">
-		<div class="pi_header">
-			<div class="pi_header_logo">
-				<img src="radio/res/img/pi_logo1.svg" class="img_logo">
-				<div class="pi_header_logo_text">
-					<p class="para_logo">PiRadio</p>
-				</div>
-			</div>
-			<div class="pi_header_icons">
-			<img class="pi_header_icons_icon" src="radio/res/img/add.png" title="Add station">
-			<img class="pi_header_icons_icon" src="radio/res/img/view2.png" title="View source">
-			</div>
-		</div>
-
-		<div class="pi_wraper">
-		<div class="pi_stations">
-		<div class="pi_stations_filter">
-			<div class="pi_stations_filter_border">
-			<div class="pi_stations_filter_station">
-				<div class="pi_stations_filter_station_info">
-					<img class="img_active" src="radio/res/img/pi_logo.svg">
-				<p class="para_name_station">Station name</p>
-			</div>
-				<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
-			</div>
-			</div>
-			<div class="pi_stations_filter_border">
-				<div class="pi_stations_filter_station">
-					<div class="pi_stations_filter_station_info">
-						<img class="img_active" src="radio/res/img/pi_logo.svg">
-					<p class="para_name_station">Station name</p>
-				</div>
-					<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
-				</div>
-				</div>
-				<div class="pi_stations_filter_border">
-					<div class="pi_stations_filter_station">
-						<div class="pi_stations_filter_station_info">
-							<img class="img_active" src="radio/res/img/pi_logo.svg">
-						<p class="para_name_station">Station name</p>
-					</div>
-						<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
-					</div>
-					</div>
-				<div class="pi_stations_filter_border">
-						<div class="pi_stations_filter_station">
-							<div class="pi_stations_filter_station_info">
-								<img class="img_active" src="radio/res/img/pi_logo.svg">
-							<p class="para_name_station">Station name</p>
-						</div>
-							<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
-						</div>
-						</div>
-				<div class="pi_stations_filter_border">
-							<div class="pi_stations_filter_station">
-								<div class="pi_stations_filter_station_info">
-									<img class="img_active" src="radio/res/img/pi_logo.svg">
-								<p class="para_name_station">Station name</p>
-							</div>
-								<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
-							</div>
-							</div>
-				<div class="pi_stations_filter_border">
-								<div class="pi_stations_filter_station">
-									<div class="pi_stations_filter_station_info">
-										<img class="img_active" src="radio/res/img/pi_logo.svg">
-									<p class="para_name_station">Station name</p>
-								</div>
-									<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
-								</div>
-								</div>
-								<div class="pi_stations_filter_border">
-									<div class="pi_stations_filter_station">
-										<div class="pi_stations_filter_station_info">
-											<img class="img_active" src="radio/res/img/pi_logo.svg">
-										<p class="para_name_station">Station name</p>
-									</div>
-										<img class="img_bin" src="radio/res/img/bin.png" title="Delete">
-									</div>
-									</div>
-		<!-- <div class="stations_station" v-for='(station, index) in stations' v-bind:key='station.id'
-                        v-bind:class="{'stations_station_clicked':clicked===station.id}" v-bind:stationId='station.id'
-						v-on:click="clicked=station.id, returnId"> -->
-	</div>
-	</div>
-	
-	<div class="pi_controls">
-		<div class="pi_controls_name"><p class="para_name">Name station</p></div>
-		<div class="pi_controls_button" v-on:click=playPauseChange>
-			<div class="pi_controls_button_play" ref='button'></div>
-		</div>
-	</div>
-</div>
-</div>
-<script>
-	let pi=new Vue({
-		el: '.pi',
-		methods: {
-			playPauseChange: function(){
-				this.$refs.button.classList.toggle('pi_controls_button_pause')
-				
-			}
-		}
-
-
-	})
-</script>
-
+@media(min-width:1100px){
+    .pi_controls{
+        align-items: center;
+    }
+    .pi_controls_panel{
+        margin: 4vh;
+        display: flex;
+        align-items: center;
+        margin: 0;
+    }
+    .pi_wraper{
+        width: 55%;
+        margin: auto;
+    }
+    .pi_stations{
+        padding: 0 3vh;
+    }
+}
+@media(max-width:400px){
+    .pi_stations_filter{
+        padding: 5px 0;
+    }
+}
 
