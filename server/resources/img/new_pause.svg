@@ -71,23 +71,19 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(-44.032912,-90.525062)">
-    <g
-       transform="matrix(1.0014821,0,0,0.93921399,8.971547,8.1140124)"
-       id="g5843">
-      <rect
-         y="92.719582"
-         x="46.227432"
-         height="65.085175"
-         width="13.607142"
-         id="rect1684"
-         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
-      <rect
-         style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
-         id="rect1684-1"
-         width="13.607142"
-         height="65.085175"
-         x="74.953621"
-         y="92.75621" />
-    </g>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:5.81909;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal"
+       id="rect1684"
+       width="13.62731"
+       height="61.128906"
+       x="47.70797"
+       y="95.19754" />
+    <rect
+       y="95.231941"
+       x="89.327919"
+       height="61.128906"
+       width="13.62731"
+       id="rect1684-1"
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:5.81909;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:normal" />
   </g>
 </svg>
