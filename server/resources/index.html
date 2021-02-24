@@ -6,13 +6,12 @@
 
 	<link rel="icon" type="image/ico" href="favicon.png">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link rel="stylesheet" href="radio/res/css23/server1.css">
+	<link rel="stylesheet" href="radio/res/css23/server2.css">
     <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
 	<link href="https://fonts.cdnfonts.com/css/3dumb" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,700;1,600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="https://unpkg.com/wired-elements/lib/wired-elements-iife.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
 
@@ -22,19 +21,64 @@
 
 <body>
 	
-<div class="pi">
-		<div class="pi_header">
+	<div class="pi">
+		<div ref='menu' class="pi_header_menu">
+			<div style="cursor: pointer;">
+			<img ref='settings' @mouseover=showAndBlur @mouseout=notBlurBoardAndHideIcons class="img_settings" src="radio/res/img/settings.png">
+		</div>
+	</div>
+		<div ref='icons_wraper' @mouseover=showAndBlur @mouseout=notBlurBoardAndHideIcons class="pi_header_menu_icons"> 
+			<div ref='icon1' @click=checkUriIcon @mouseover=hover @mouseout=notHover class="pi_header_menu_icons_icon" id="icon1">
+				<div class="pi_header_menu_icons_icon_border" id="border1">
+					<div class="icon_background" id="background1">
+			<img class="img_icons" src="radio/res/img/preview.png" id="img1"></div>
+		</div>
+		</div>
+		<div ref='icon2' @click=hideIconsAndAddStation 
+		@mouseover=hover @mouseout=notHover class="pi_header_menu_icons_icon" id="icon2">
+			<div class="pi_header_menu_icons_icon_border" id="border2">
+				<div class="icon_background" id="background2">
+			<img class="img_icons" src="radio/res/img/add-icon.png" id="img2">
+			</div>
+		</div>
+	</div>
+		<div  ref='icon3' @click=setDeleteIcon @mouseover=hover @mouseout=notHover class="pi_header_menu_icons_icon" id="icon3">
+			<div class="pi_header_menu_icons_icon_border" id="border3">
+				<div class="icon_background" id="background3">
+			<img class="img_icons" src="radio/res/img/delete-icon.png" id="img3">
+			</div>
+		</div>
+	</div>
+
+		</div>
+		 
+		<div ref='addition' id="pi_addition">
+			<div id="pi_addition_wraper">
+			<div @click=hideAdittion id="pi_close">
+			<div @click=hideAdittion ref='close' id="pi_close_x">
+			</div>
+		</div>
+		<div class="pi_addition_inputs">
+			<input @click='clearPlaceholderName' ref='inputStationName' v-model="stationName" placeholder='Station name' class="pi_addition_inputs_input">
+			<input @click='clearPlaceholderUri' ref='inputStationUri' v-model="stationUri" placeholder='Station uri' class="pi_addition_inputs_input">
+		</div>
+		<div id="pi_additions_buttons">
+			<button @click=setAddStation id="submit_button" type="button">Submit</button>
+		</div>
+		</div>
+	</div>
+		<div ref='blur' class="pi_blur">
+			<div class="pi_blur_background">
+			<div class="pi_header">
 			<div class="pi_header_logo">
 				<div class="pi_header_logo_text">
 					<p class="para_logo">Pi<span class="para_orange">R</span>adio</p>
 				</div>
 			</div>
-			<div class="pi_header_icons">
-				<img class="pi_header-icon_menu" src="radio/res/img/menu.png">
-				</div>
 		</div>
 		<div class="pi_divider"></div>
-		<div ref='stationName' class="pi_station_name"><p class="para_name">##clickedStationName## ##index##</p></div>
+		
+		<div ref='stationName' class="pi_station_name"><p class="para_name">##clickedStationName##</p></div>
 
 		<div class="pi_header_logo_pic">
 			<div class="pic_elements logo_elements" id="pic1"></div>
@@ -49,10 +93,11 @@
 		<div class="pi_stations_filter" >
 			<div class="pi_stations_filter_border" >
 				<div :ref="'filterStation'+index" class="pi_stations_filter_station">
-					<div class="pi_stations_filter_station_info">
-					<p v-if='!preview' ref="nameUri" class="para_name_station">##station.name##</p>
-					<p v-if='preview' ref="nameUri" class="para_name_station">##station.uri##</p>
-			<img :ref="'station'+index" class="img_active" src="radio/res/img/new_play_outline.svg">
+					<div :ref="'filter'+index" class="pi_stations_filter_station_info">
+					<p v-if='!isUriChecked' ref="nameUri" class="para_name_station">##station.name##</p>
+					<p v-if='isUriChecked' ref="nameUri" class="para_name_station">##station.uri##</p>
+			<img v-if='!isRemoveChecked' :ref="'station'+index" class="img_active" src="radio/res/img/new_play_outline.svg">
+			<img v-if='isRemoveChecked':ref="'station'+index" class="img_active_invert" src="radio/res/img/new_clear.png">
 				</div>
 	</div>
 	</div></div>
@@ -62,12 +107,16 @@
 	<div class="pi_controls">
 		<div class="pi_controls_panel">
 		<div class="pi_controls_panel_button">
-				
+				<img @click=playPrevious ref='previousButton' class="img_previous_next" src="radio/res/img/previous.svg">
 			<img @click=playStation ref='play' class="img_play" src="radio/res/img/play_outline.svg">
 				<img @click=stopStation ref='pause' class="img_pause" src="radio/res/img/pause_outline.svg">
+				<img @click=playNext ref='nextButton' class="img_previous_next" src="radio/res/img/next.svg">
+
 			</div>
 		</div>
 	</div>
+</div>
+</div>
 </div>
 
 <script>
@@ -75,99 +124,336 @@
 		el: '.pi',
 		delimiters: ["##","##"],
 		data: {
-			preview:false,
+			visibleIcons:false,
 			stations: [],
 			station: '',
 			clickedStation:'',
-			clickedStationName: '',
+			clickedStationName: 'Click a station',
+			removeStationName:'',
 			stationNumber: null,
-			index: null,
+			playingStationNumber: null,
 			play: '',
 			pause: '',
+			isUriChecked:false,
+			isRemoveChecked:false,
+			stationName: 'Station name',
+			stationUri: 'Station uri',
+			kiti: 'kiti',
 		},
 		created() {
 			this.getData("/radio/api/station/all");
-
+			this.getData("/radio/api/station/all");			
 		},
+		mounted() {
+			this.$refs.addition.style.transform='translate(80rem)';
+		},
+		watch: {
+			stations: (oldS, newS) => { console.log(oldS, newS, 'w') }
+            },
+		
 		methods: {
+			clearPlaceholderName: function(){
+				this.stationName=''
+			},
+			clearPlaceholderUri: function(){
+				this.stationUri=''
+			},
+			setDeleteIcon: function(){				
+				for(let i=0;i<this.stations.length;i++){
+					if(!this.isRemoveChecked){					
+					this.$refs['station'+i][0].src='radio/res/img/new_clear.png';
+					this.$refs['station'+i][0].style.filter='invert(100%)';
+					this.$refs['station'+i][0].style.height='20px';
+				}else{
+					for(let i=0;i<this.stations.length;i++){
+						this.$refs['station'+i][0].style.filter='invert(0)';
+						this.$refs['station'+i][0].style.height='15px';
+						console.log(i!==this.playingStationNumber);	
+						if(i!==this.playingStationNumber){				
+						this.$refs['station'+i][0].src='radio/res/img/new_play_outline.svg';
+						}else{
+						this.$refs['station'+this.playingStationNumber][0].src='radio/res/img/new_pause_outline.svg';
+						}
+				}
+				}
+				this.$refs['station'+this.playingStationNumber][0].src='radio/res/img/new_pause_outline.svg';
+				}
+				// this.$refs['station'+this.playingStationNumber][0].src='radio/res/img/new_pause_outline.svg';
+				console.log('p', this.$refs['station'+this.playingStationNumber][0].src);
+				this.isRemoveChecked=!this.isRemoveChecked;
+				this.checkRemoveIcon();
+				this.$refs.blur.style.filter='blur(0)';
+			},
+			setPlaceholderName: function(){
+				this.stationName='Station name'
+			},
+			setPlaceholderUri: function(){
+				this.stationUri='Station uri'
+			},
+			showAddStation: function(){
+				this.$refs.addition.style.transform='translate(0)';
+				this.blurBg();
+			},
+			hideIconsAndAddStation: function(){
+				this.showAddStation();
+				this.hideIcons();
+			},
+			addStation: function(name, uri){
+				let station = new Station(name, uri);
+    			let replySet = this.postApi("/radio/api/station/put", this.getJsonStrNameAndUri(station));
+    			let status = new Status(
+        		replySet["code"],
+        		replySet["message"]);
+				this.stations.push(this.getJsonStrNameAndUri(station));
+				return status
+			},
+			setAddStation: function(){
+				this.hideAdittion();
+				this.addStation([this.$refs.inputStationName.value], [this.$refs.inputStationUri.value]);
+				this.getData("/radio/api/station/all");
+				this.getData("/radio/api/station/all");
+			},
+			getJsonStrNameAndUri: function(){
+        		let nameAndUriJson = JSON.parse('{"name": "", "uri":""}');
+        		nameAndUriJson["name"] = this.$refs.inputStationName.value;
+        		nameAndUriJson["uri"] = this.$refs.inputStationUri.value;
+				return JSON.stringify(nameAndUriJson);
+    		},
+			getJsonStrName: function(){
+        		let nameJson = JSON.parse('{"name": ""}');
+        		nameJson["name"] = this.clickedStation;
+        		return JSON.stringify(nameJson);
+    		},
+			setRemoveStation: function(){
+				this.removeStation(this.removeStationName)
+				this.getData("/radio/api/station/all");
+				this.getData("/radio/api/station/all");
+			},
+			removeStation: function(name){
+				let station = new Station(name, null);
+				let replySet = this.postApi("/radio/api/station/delete", this.getJsonStrName(station));
+    			let status = new Status(
+        		replySet["code"],
+        		replySet["message"]);
+				console.log(this.stationNumber===this.playingStationNumber);
+				if(this.stationNumber===this.playingStationNumber){
+					this.clickedStationName='Click a station';
+				this.stopStation();
+				}
+				return status
+			},
+			hover: function(){
+				if(event.target===document.querySelector('#icon1')||
+				event.target===document.querySelector('#border1')||event.target===document.querySelector('#img1')||
+				event.target===document.querySelector('#background1')
+				){
+					document.querySelector('#background1').style.backgroundColor='rgb(105, 102, 107)';
+				}
+				if(
+				event.target===document.querySelector('#icon2')||
+				event.target===document.querySelector('#border2')||
+				event.target===document.querySelector('#img2')||
+				event.target===document.querySelector('#background2')){
+					document.querySelector('#icon2').style.opacity='1';
+					document.querySelector('#background2').style.backgroundColor='rgb(105, 102, 107)';
+				}
+				if(
+				event.target===document.querySelector('#icon3')||
+				event.target===document.querySelector('#border3')||
+				event.target===document.querySelector('#img3')||
+				event.target===document.querySelector('#background3'))
+				{
+					document.querySelector('#icon3').style.opacity='1';
+					document.querySelector('#background3').style.backgroundColor='rgb(105, 102, 107)';
+				}
+			},
+			notHover: function(){
+				document.querySelector('#border1').style.border='0';
+				document.querySelector('#border2').style.border='0';
+				document.querySelector('#border3').style.border='0';
+				if(!this.isUriChecked){
+				document.querySelector('#background1').style.backgroundColor='rgb(49, 46, 51)';}else{
+					document.querySelector('#background1').style.backgroundColor='orange'
+				}
+				document.querySelector('#background2').style.backgroundColor='rgb(49, 46, 51)';
+				if(!this.isRemoveChecked){
+				document.querySelector('#background3').style.backgroundColor='rgb(49, 46, 51)';
+				}else{
+					document.querySelector('#background3').style.backgroundColor='orange'
+					}
+			},
+			checkUriIcon: function(){
+				if(!this.isUriChecked){
+					document.querySelector('#background1').style.backgroundColor='rgb(255, 167, 0)';
+				}
+				this.notBlurBg();
+				this.isUriChecked=!this.isUriChecked;
+				this.hideIcons();
+			},
+			checkRemoveIcon: function(){
+				if(!this.isRemoveChecked){
+				document.querySelector('#background3').style.backgroundColor='orange';
+				}
+				this.notBlurBg();
+				this.hideIcons();
+			},
+			showIcons: function(){
+				this.$refs.icons_wraper.style.height='250px';
+				this.$refs.icons_wraper.style.width='80px';
+				this.$refs.settings.style.transform='translate(30px)';
+				this.$refs.icon1.style.transform='translate(-20px)';
+				this.$refs.icon2.style.transform='translate(-20px)';
+				this.$refs.icon3.style.transform='translate(-20px)'
+			},
+			blurAll: function(){
+				this.blurBg();
+				this.blurBoard();
+			},
+			blurBg: function(){
+				this.$refs.blur.style.filter='blur(10px)';
+			},
+			blurBoard: function(){
+				this.$refs.addition.style.filter='blur(10px)'
+			},
+			showAndBlur: function(){
+				this.showIcons();
+				this.blurAll();
+			},
+			notBlurBg: function(){
+				if(this.$refs.icons_wraper.style.height==='12px'&&this.$refs.addition.style.transform==='translate(80rem)'){
+				this.$refs.blur.style.filter='blur(0)';
+				}
+			},
+			notBlurBoard: function(){
+				this.$refs.addition.style.filter='blur(0)';
+					this.$refs.addition.style.filter='blur(0)';
+			},
+			hideIcons: function(){
+				this.$refs.blur.style.transition='.5s';
+				this.$refs.icons_wraper.style.height='12px';
+				this.$refs.icons_wraper.style.width='20px';
+				this.$refs.settings.style.transform='translate(0)'
+				this.$refs.addition.style.filter='blur(0)';
+				this.$refs.icon1.style.transform='translate(20rem)';
+				this.$refs.icon2.style.transform='translate(20rem)';
+				this.$refs.icon3.style.transform='translate(20rem)';
+				this.$refs.icon1.style.transition='all .5s';
+			},
+			notBlurBoardAndHideIcons: function(){
+				this.notBlurBoard();
+				this.hideIcons();
+					this.notBlurBg();				
+			},
+			hideAdittion: function(){
+				this.$refs.addition.style.transform='translate(80rem)';
+				this.notBlurBg();
+			},
 			ifStatePlay: function(){
-				fetch("/radio/api/audio/state").then(resp=>{return resp}).then(resp=>resp.json())
+				fetch("/radio/api/audio/state").then(resp=>{console.log(resp); return resp}).then(resp=>resp.json())
 			},
 			isClicked: function(index){
-				let indexStation='station'+index;
-				let filterStation='filterStation'+index;
-				let filterStationClicked='filterStationClicked'+index;
 				this.stationNumber=index;
-				this.clickedStation=this.stations[index];
-				this.clickedStationName=this.stations[index].name;
-				let isSameStation= this.clickedStationName===this.stations[index].name;
-				if(isSameStation){
-					console.log(this.$refs['station'+index][0].src, this.$refs['station'+index][0].src==='http://localhost:8080/radio/res/img/new_play_outline.svg')
-					if(this.$refs['station'+index][0].src==='http://localhost:8080/radio/res/img/new_play_outline.svg'){
-					this.setStation(this.clickedStationName);
-					}else{this.stopStation();					
+				let filter= 'filter'+this.stationNumber;
+				let indexStation='station'+this.stationNumber;
+				let filterStation='filterStation'+this.stationNumber;
+				// this.clickedStation=this.stations[this.stationNumber];
+				this.clickedStation=this.stations[this.stationNumber].name;
+				let isSameStation=this.clickedStation===this.stations[this.stationNumber].name;
+				if(this.isRemoveChecked){
+					this.removeStationName=this.stations[this.stationNumber].name;
+					this.setRemoveStation();
+					}else{
+						this.playingStationNumber=index;
+						this.$refs['filterStation'+this.stationNumber][0].style.backgroundColor='rgba(255, 255, 255,.15)';
+				if((isSameStation)&&(event.target!==this.$refs.previousButton)&&(event.target!==this.$refs.nextButton)){
+					console.log(this.$refs['station'+this.stationNumber][0].src);
+					if(this.$refs['station'+this.stationNumber][0].src==='http://localhost:8080/radio/res/img/new_play_outline.svg'){
+					this.setStation(this.clickedStation);
+					this.$refs['station'+this.stationNumber][0].style.display.marginLeft='-3px'
+					}else
+					{this.stopStation();	
 					}
-				}else{
-					this.setStation(this.clickedStationName);			
-					}
-					console.log(this.$refs['station'+index][0].src,this.clickedStationName);
+				}
+				else{
+					this.setStation(this.clickedStation);
+					this.$refs['station'+this.stationNumber][0].style.display.marginLeft='-3px'
+						}
+				this.clickedStationName=this.stations[this.playingStationNumber].name;
 				for(let it=0;it<this.stations.length;it++){
-					if(it!=index){
-					this.$refs['filterStation'+it][0].setAttribute('class','pi_stations_filter_station');
+					console.log(it!=this.playingStationNumber);
+					if((it!=this.playingStationNumber) && (!this.isRemoveChecked)){
+						this.$refs['filterStation'+it][0].style.backgroundColor='rgb(255, 255, 255, 0)';
 					this.$refs['station'+it][0].src='radio/res/img/new_play_outline.svg';
+
 				}else{						
-					if(this.$refs['station'+it][0].src==='http://localhost:8080/radio/res/img/new_play_outline.svg'){
-						this.stopStation();
+					if(this.$refs['station'+this.playingStationNumber][0].src='http://localhost:8080/radio/res/img/new_pause_outline.svg'){
+						this.stopStation()
 					}else{
 						this.setStation(this.clickedStationName);
 					}
-					this.$refs['filterStation'+it][0].setAttribute('class','pi_stations_filter_station_clicked');
-				}			
-			}
+				}	
+				}
+				}
+				
 			},
 			getData: function(url){
 				fetch(url).then(resp=>{return resp}).then(resp=>{return resp.text()}).
 				then(resp=>{return JSON.parse(resp)}).then(
-					resp=>{this.stations = resp.value; 
+					resp=>{this.stations = resp.value; console.log(this.stations);
 					return this.stations});
 			},
 			playStation: function(){
-				this.$refs['station'+this.stationNumber][0].setAttribute('src', 'http://localhost:8080/radio/res/img/new_pause_outline.svg');
-				this.$refs.play.style.display='none'
+				if(!this.isRemoveChecked){
+				this.$refs['station'+this.stationNumber][0].setAttribute('src', 'http://localhost:8080/radio/res/img/new_pause.svg');
+				this.$refs.play.style.display='none';
 				this.$refs.pause.style.display='block';
-				return this.testGet("/radio/api/audio/play").then((res)=>{
-					return res;
-				})},
+				return this.getApi("/radio/api/audio/play").then((res)=>{
+					return res;				
+				})}
+				},
 			stopStation: function(){
-				this.$refs['station'+this.stationNumber][0].src="radio/res/img/new_play_outline.svg";
-				console.log(this.$refs['station'+this.stationNumber][0].src, 'src', this.stationNumber);
+				if(!this.isRemoveChecked){
+				this.$refs['station'+this.stationNumber][0].src="radio/res/img/new_play_outline.svg";				
 				this.$refs.pause.style.display='none';
-				this.$refs.play.style.display='block'
-				return this.testGet("/radio/api/audio/stop").then((res)=>{
+				this.$refs.play.style.display='block';
+				return this.getApi("/radio/api/audio/stop").then((res)=>{
 					return res;
 				})
-			},
+				}
+				},
 			setStation: function(name) {
     			let station = new Station(name, null);
-    			let replySet = this.testPost("radio/api/audio/set",JSON.stringify({"name": station.name})).then(resp=>{this.playStation();});
+    			let replySet = this.postApi("radio/api/audio/set",JSON.stringify({"name": station.name})).then(
+				resp=>{this.playStation();});
     			let status = new Status(
         		replySet["code"],
         		replySet["message"]);
 				return status;
 			},
-			testPost: function (url, body){
+			postApi: function (url, body){
 				return fetch(url, {
   				method: "POST",
   				body: body}
 				).then(resp=>{return resp});
 			},
-			testGet: function (url){
+			getApi: function (url){
 				return fetch(url).then(resp=>{return resp}).then(resp=>{return resp.text()}).
 				then(resp=>{return JSON.parse(resp)}).then(resp=>{return resp});					
+				},
+			playPrevious: function(){
+				if(this.stationNumber===0){this.stationNumber=this.stations.length-1}else{
+					this.stationNumber-=1
 				}
+				this.isClicked(this.stationNumber);
+			},
+			playNext: function(){
+				if(this.stationNumber===this.stations.length-1){this.stationNumber=0}else{
+					this.stationNumber+=1
+				}
+				this.isClicked(this.stationNumber);
+			}
 
 	}});
-
 	class Status {
     constructor(code, message) {
         this.code = code;
@@ -176,9 +462,11 @@
 class Station {
     constructor(name, uri) {
         this.name = name;
-        this.uri = uri;
-        
+        this.uri = uri;        
     }}
 </script>
+
+
+
 
 
