@@ -1,5 +1,15 @@
 
 # <img src="server/resources/favicon.png" width="32">  PiRadio
+
+#Build
+cd PiRadioApp/scripts
+sudo sh install_enviroment.sh
+sh build.sh
+
+#Run
+cd ../build
+./PiRadioApp -res ../server/resources -db ../example-database.json -col -na
+
 [![Build Status](https://travis-ci.com/PiRadioApp/PiRadioApp.svg?branch=master)](https://travis-ci.com/PiRadioApp/PiRadioApp)
 ## Description
 ```
