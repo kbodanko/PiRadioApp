@@ -2,8 +2,11 @@
 # <img src="server/resources/favicon.png" width="32">  PiRadio
 
 #Build
+
 cd PiRadioApp/scripts
+
 sudo sh install_enviroment.sh
+
 sh build.sh
 
 #Run
