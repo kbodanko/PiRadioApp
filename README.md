@@ -1,15 +1,28 @@
 
 # <img src="server/resources/favicon.png" width="32">  PiRadio
-
-#Build
-
+# Setup
+Download repository
+```
+git clone https://github.com/kbodanko/PiRadioApp
+```
+## Quick and fast setup
+---
+### Build
+```Cpp
 cd PiRadioApp/scripts
 sudo sh install_enviroment.sh
 sh build.sh
-
-#Run
-cd ../build
+```
+Password for sudo will be needed!
+### Example run
+```Cpp
+    cd ../build
+```
+from `build` directory:
+```Cpp
 ./PiRadioApp -res ../server/resources -db ../example-database.json -col -na
+```
+`resource`
 
 [![Build Status](https://travis-ci.com/PiRadioApp/PiRadioApp.svg?branch=master)](https://travis-ci.com/PiRadioApp/PiRadioApp)
 ## Description
